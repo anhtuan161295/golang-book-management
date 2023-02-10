@@ -21,6 +21,7 @@ func setupRouter() *gin.Engine {
 	})
 
 	controller.SearchTodayWeather(r)
+	controller.GetWeatherRecords(r)
 	controller.CreateWeatherRecord(r)
 	controller.UpdateWeatherRecord(r)
 	controller.DeleteWeatherRecord(r)

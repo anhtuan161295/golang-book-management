@@ -67,6 +67,58 @@ func SearchTodayWeather(route *gin.Engine) {
 
 }
 
+func GetWeatherRecords(route *gin.Engine) {
+	auth := route.Group("/api/weather")
+	auth.GET("/records", func(ctx *gin.Context) {
+
+		cityId, hasParam := ctx.GetQuery("cityId")
+		if !hasParam {
+			cityId = "-1"
+		}
+
+		from, hasParam := ctx.GetQuery("from")
+		if !hasParam {
+			ctx.JSON(400, gin.H{
+				"code":    400,
+				"message": "From parameter is missing",
+			})
+			return
+		}
+
+		to, hasParam := ctx.GetQuery("to")
+		if !hasParam {
+			ctx.JSON(400, gin.H{
+				"code":    400,
+				"message": "To parameter is missing",
+			})
+			return
+		}
+
+		page, hasParam := ctx.GetQuery("page")
+		if !hasParam {
+			page = "1"
+		}
+
+		size, hasParam := ctx.GetQuery("size")
+		if !hasParam {
+			size = "10"
+		}
+
+		parsedCityId, _ := strconv.Atoi(cityId)
+		parsedPage, _ := strconv.Atoi(page)
+		parsedSize, _ := strconv.Atoi(size)
+
+		data := db.GetWeathers(parsedCityId, from, to, parsedPage, parsedSize)
+
+		ctx.JSON(200, gin.H{
+			"code":   200,
+			"status": "OK",
+			"data":   data,
+		})
+	})
+
+}
+
 func CreateWeatherRecord(route *gin.Engine) {
 	auth := route.Group("/api/weather")
 	auth.POST("/record", func(ctx *gin.Context) {
