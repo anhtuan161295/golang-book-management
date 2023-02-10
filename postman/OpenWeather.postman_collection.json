@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "a69e5ee4-f484-4bb9-afd3-7ea045154f6c",
+		"name": "OpenWeather",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3498874"
+	},
+	"item": [
+		{
+			"name": "Get weather by city",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.openweathermap.org/data/2.5/weather?q=Ha Noi&appid=10b9ba03011a6e8bbc0935e7808cd926",
+					"protocol": "https",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Ha Noi"
+						},
+						{
+							"key": "appid",
+							"value": "10b9ba03011a6e8bbc0935e7808cd926"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Today Weather",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/weather/search-today-weather?cityName=Ha Noi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"weather",
+						"search-today-weather"
+					],
+					"query": [
+						{
+							"key": "cityName",
+							"value": "Ha Noi"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Weather Records",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/weather/records?from=2023-02-09&to=2023-02-10&cityId=-1&page=1&size=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"weather",
+						"records"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2023-02-09"
+						},
+						{
+							"key": "to",
+							"value": "2023-02-10"
+						},
+						{
+							"key": "cityId",
+							"value": "-1"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Weather Record",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cityId\": 1581130,\r\n    \"time\": 1675933762000,\r\n    \"data\": \"{\\\"coord\\\":{\\\"lon\\\":105.8412,\\\"lat\\\":21.0245},\\\"weather\\\":[{\\\"id\\\":804,\\\"main\\\":\\\"Clouds\\\",\\\"description\\\":\\\"overcast clouds\\\",\\\"icon\\\":\\\"04d\\\"}],\\\"base\\\":\\\"stations\\\",\\\"main\\\":{\\\"temp\\\":296.15,\\\"feels_like\\\":296.72,\\\"temp_min\\\":296.15,\\\"temp_max\\\":296.15,\\\"pressure\\\":1010,\\\"humidity\\\":85,\\\"sea_level\\\":1010,\\\"grnd_level\\\":1008},\\\"visibility\\\":10000,\\\"wind\\\":{\\\"speed\\\":4.72,\\\"deg\\\":129,\\\"gust\\\":8.23},\\\"clouds\\\":{\\\"all\\\":98},\\\"dt\\\":1675933762,\\\"sys\\\":{\\\"type\\\":1,\\\"id\\\":9308,\\\"country\\\":\\\"VN\\\",\\\"sunrise\\\":1675899036,\\\"sunset\\\":1675939869},\\\"timezone\\\":25200,\\\"id\\\":1581130,\\\"name\\\":\\\"Hanoi\\\",\\\"cod\\\":200}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/weather/record",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"weather",
+						"record"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Weather Record",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cityId\": 1581130,\r\n    \"time\": 1675933762,\r\n    \"data\": \"{\\\"coord\\\":{\\\"lon\\\":105.8412,\\\"lat\\\":21.0245},\\\"weather\\\":[{\\\"id\\\":804,\\\"main\\\":\\\"Clouds\\\",\\\"description\\\":\\\"overcast clouds\\\",\\\"icon\\\":\\\"04d\\\"}],\\\"base\\\":\\\"stations\\\",\\\"main\\\":{\\\"temp\\\":296.15,\\\"feels_like\\\":296.72,\\\"temp_min\\\":296.15,\\\"temp_max\\\":296.15,\\\"pressure\\\":1010,\\\"humidity\\\":85,\\\"sea_level\\\":1010,\\\"grnd_level\\\":1008},\\\"visibility\\\":10000,\\\"wind\\\":{\\\"speed\\\":4.72,\\\"deg\\\":129,\\\"gust\\\":8.23},\\\"clouds\\\":{\\\"all\\\":98},\\\"dt\\\":1675933762,\\\"sys\\\":{\\\"type\\\":1,\\\"id\\\":9308,\\\"country\\\":\\\"VN\\\",\\\"sunrise\\\":1675899036,\\\"sunset\\\":1675939869},\\\"timezone\\\":25200,\\\"id\\\":1581130,\\\"name\\\":\\\"Hanoi\\\",\\\"cod\\\":200}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/weather/record/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"weather",
+						"record",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Weather Record",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/weather/record/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"weather",
+						"record",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
