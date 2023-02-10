@@ -8,8 +8,9 @@ import (
 
 // Configurations exported
 type Configuration struct {
-	Server   ServerConfig
-	Database DatabaseConfig
+	Server      ServerConfig
+	Database    DatabaseConfig
+	OpenWeather OpenWeatherConfig
 }
 
 type ServerConfig struct {
@@ -24,9 +25,14 @@ type DatabaseConfig struct {
 	DatabaseName string
 }
 
+type OpenWeatherConfig struct {
+	Key string
+}
+
 var MyConfiguration Configuration
 var MyDatabaseConfig DatabaseConfig
 var MyServerConfig ServerConfig
+var MyOpenWeatherConfig OpenWeatherConfig
 
 func getConfig() Configuration {
 	// set viper configuration to read config from file
@@ -54,6 +60,7 @@ func init() {
 	MyConfiguration = getConfig()
 	MyServerConfig = MyConfiguration.Server
 	MyDatabaseConfig = MyConfiguration.Database
+	MyOpenWeatherConfig = MyConfiguration.OpenWeather
 
 	fmt.Println("Reading variables using the model...")
 	fmt.Println("Server Port is\t", MyServerConfig.Port)

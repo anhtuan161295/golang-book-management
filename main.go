@@ -20,6 +20,7 @@ func setupRouter() *gin.Engine {
 		ctx.JSON(404, gin.H{"message": "Not Found"})
 	})
 
+	controller.SearchTodayWeather(r)
 	controller.CreateWeatherRecord(r)
 	controller.UpdateWeatherRecord(r)
 	controller.DeleteWeatherRecord(r)

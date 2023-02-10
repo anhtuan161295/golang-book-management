@@ -4,8 +4,10 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/stretchr/objx"
 
 	db "example.com/openweather/database"
+	service "example.com/openweather/service"
 )
 
 type CreateWeatherRequest struct {
@@ -23,6 +25,46 @@ type UpdateWeatherRequest struct {
 
 type DeleteWeatherRequest struct {
 	Id int
+}
+
+type OpenWeatherData struct {
+	Cod     int
+	Message string
+}
+
+func SearchTodayWeather(route *gin.Engine) {
+	auth := route.Group("/api/weather")
+	auth.GET("/search-today-weather", func(ctx *gin.Context) {
+
+		cityName, hasParam := ctx.GetQuery("cityName")
+		if !hasParam {
+			ctx.JSON(400, gin.H{
+				"code":    400,
+				"message": "City is invalid",
+			})
+			return
+		}
+
+		data := service.GetWeatherByCity(cityName)
+
+		dataObj := objx.MustFromJSON(data)
+		code := dataObj.Get("cod").Str()
+
+		if code != "200" {
+			ctx.JSON(400, gin.H{
+				"code":    400,
+				"message": "City not found",
+			})
+			return
+		}
+
+		ctx.JSON(200, gin.H{
+			"code":   200,
+			"status": "OK",
+			"data":   dataObj,
+		})
+	})
+
 }
 
 func CreateWeatherRecord(route *gin.Engine) {

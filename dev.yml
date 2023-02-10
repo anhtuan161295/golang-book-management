@@ -7,3 +7,6 @@ database:
   username: root
   password: root
   databaseName: weather
+
+openWeather:
+  key: 10b9ba03011a6e8bbc0935e7808cd926
