@@ -1,0 +1,9 @@
+server:
+  port: 8080
+
+database:
+  url: 192.168.200.130
+  port: 6033
+  username: root
+  password: root
+  databaseName: weather
