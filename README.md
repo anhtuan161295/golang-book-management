@@ -12,7 +12,7 @@ go run main.go
 ## How to test
 Import Postman collection script in folder `postman`  
 
-# Dependency
+## Dependency
 Go  
 Gin Web Framework  (Web framework)  
 Viper (for configuration)  
